@@ -11,6 +11,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCard, MatCardModule} from '@angular/material/card';
 import {DashboardService} from '../../modules/dashboard.service';
 import {HttpClientModule} from '@angular/common/http';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
     FlexLayoutModule,
     MatCardModule,
     HttpClientModule,
+    MatButtonModule,
   ],
   providers: [
     DashboardService

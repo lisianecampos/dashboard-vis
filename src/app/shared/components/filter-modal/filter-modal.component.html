@@ -1,0 +1,34 @@
+<!--<h1 mat-dialog-title>Filtros</h1>-->
+  <form [formGroup]="form" class="form-group">
+    <div class="title">
+      <span>Selecione o intervalo de anos de apresentação das proposições:</span>
+    </div>
+    <div class="form">
+
+      <div class="years">
+
+
+        <div class="form-values">
+          <div class="form-group">
+            <label for="start-year" class="form-title">Ano início </label>
+            <input id="start-year" class="form-control" formControlName="startYear">
+          </div>
+        </div>
+
+        <div class="form-values">
+          <div class="form-group">
+            <label for="end-year" class="form-title">  Ano fim </label>
+            <input id="end-year" class="form-control" formControlName="endYear">
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <button mat-raised-button (click)="saveValues()">Pesquisar</button>
+      </div>
+
+    </div>
+
+  </form>
+<!--  <button mat-button (click)="cancel()">No Thanks</button>-->
+<!--  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+

@@ -19,6 +19,8 @@ import {MatSliderModule } from '@angular/material/slider';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import { YearSliderComponent } from './components/year-slider/year-slider.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FilterModalComponent } from './components/filter-modal/filter-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     AreaComponent,
     CardComponent,
     PieComponent,
-    YearSliderComponent
+    YearSliderComponent,
+    FilterModalComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     HighchartsChartModule,
     MatSliderModule,
     NgxSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [
     SidebarComponent,
@@ -51,7 +55,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    FilterModalComponent
   ],
 })
 export class SharedModule { }

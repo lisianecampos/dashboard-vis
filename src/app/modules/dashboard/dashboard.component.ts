@@ -6,6 +6,8 @@ import {take, finalize} from 'rxjs/operators';
 import {PieValues} from '../../models/PieValues';
 import {TypeQuantity} from '../../models/TypeQuantity';
 import {PieData} from '../../models/PieData';
+import {MatDialog} from '@angular/material/dialog';
+import {FilterModalComponent} from '../../shared/components/filter-modal/filter-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +19,8 @@ export class DashboardComponent implements OnInit {
   propositions: TypeQuantity[] = [];
   propositionsPie: {name: string; y: number}[] = [];
   control: boolean = false;
-
+  sideBarOpened = false;
+  modalShow = false;
   constructor(private dashboardService: DashboardService) {
   }
 
@@ -25,6 +28,16 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  addFilter(): void {
+    // const dialogRef = this.dialog.open(FilterModalComponent, {
+    //   width: '250px'
+    // });
+    //
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('closed');
+    // });
+    this.modalShow = !this.modalShow;
+  }
   //recebe os anos como array de string e transforma em string separados por vírgula
   getData(values: number[]){
     this.propositionsPie = [];
@@ -53,6 +66,10 @@ export class DashboardComponent implements OnInit {
         }
       );
 
+  }
+
+  sideBarToggled($event: any): void {
+    this.sideBarOpened = !this.sideBarOpened;
   }
 
   // faz a chamada enquanto ainda houver páginas

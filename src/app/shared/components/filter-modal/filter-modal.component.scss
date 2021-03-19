@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  //margin-top: 30px;
+}
+
+.form-values {
+  padding-right: 5px;
+  padding-top: 10px;
+
+  label {
+    font-family: Nunito, sans-serif;
+
+  }
+}
+
+input {
+  width: 60%;
+}
+
+.years {
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  margin-top: 30px;
+  font-family: Nunito, sans-serif;
+  color: gray;
+}
+
+.form-title {
+  font-family: Nunito, sans-serif;
+}
