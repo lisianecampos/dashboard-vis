@@ -21,6 +21,9 @@ import { YearSliderComponent } from './components/year-slider/year-slider.compon
 import {ReactiveFormsModule} from '@angular/forms';
 import { FilterModalComponent } from './components/filter-modal/filter-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { StackedBarChartComponent } from './widgets/stacked-bar-chart/stacked-bar-chart.component';
+import { BubbleChartComponent } from './widgets/bubble-chart/bubble-chart.component';
+import { TreeMapComponent } from './widgets/tree-map/tree-map.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     CardComponent,
     PieComponent,
     YearSliderComponent,
-    FilterModalComponent
+    FilterModalComponent,
+    StackedBarChartComponent,
+    BubbleChartComponent,
+    TreeMapComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +53,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSliderModule,
     NgxSliderModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [
     SidebarComponent,
@@ -56,7 +62,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     AreaComponent,
     CardComponent,
     PieComponent,
-    FilterModalComponent
+    FilterModalComponent,
+    StackedBarChartComponent,
+    BubbleChartComponent,
+    TreeMapComponent
   ],
 })
 export class SharedModule { }
