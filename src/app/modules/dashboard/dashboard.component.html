@@ -2,11 +2,31 @@
 <div>
 <!--  <app-widget-area></app-widget-area>-->
 <!--  <app-sidebar (valuesChanged)="getData($event)"></app-sidebar>-->
-  <button mat-raised-button (click)="addFilter()">Adicionar Filtro</button>
+<!--  <button mat-raised-button (click)="addFilter()">Adicionar Filtro</button>-->
 
-<app-filter-modal *ngIf="modalShow" (valuesChanged)="getData($event)"></app-filter-modal>
-
-  <app-widget-pie *ngIf="propositionsPie.length !== 0" [data]="propositionsPie">
-
-  </app-widget-pie>
+<app-filter-modal (valuesChanged)="getDataTypes($event)"></app-filter-modal>
 </div>
+
+<mat-divider></mat-divider>
+
+<br>
+<br>
+<!--lala-->
+<!--<div>-->
+<!--  <app-widget-pie *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0)" [data]="propositionsPie"></app-widget-pie>-->
+<!--</div>-->
+
+<!--<mat-divider></mat-divider>-->
+
+<!--<br>-->
+<!--<br>-->
+
+<!--<div>-->
+<!--  <app-stacked-bar-chart *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0)" [data]="topicStackedChartModel"></app-stacked-bar-chart>-->
+
+<!--</div>-->
+
+<app-bubble-chart></app-bubble-chart>
+
+<app-tree-map></app-tree-map>
+

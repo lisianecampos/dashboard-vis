@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Propositions} from '../models/Propositions';
 import {TypeQuantity} from '../models/TypeQuantity';
+import {StackedPieChartModel} from '../models/StackedPieChartModel';
 
 @Injectable({
   providedIn: 'root'
@@ -22,18 +23,35 @@ export class DashboardService {
   constructor(private httpClient: HttpClient) {}
 
 
-  public getPropositions(ano: string,): Observable<TypeQuantity[]> {
+  public getPropositions(start: string, end: string): Observable<TypeQuantity[]> {
 
     let params = new HttpParams();
 
-    if (!!ano) {
-      params = params.append('years', ano)
+    if (!!start) {
+      params = params.append('start', start)
+    }
+    if (!!end) {
+      params = params.append('end', end)
     }
 
     this.options.params = params;
-    return this.httpClient.get<TypeQuantity[]>(this.apiUrl, this.options);
+    return this.httpClient.get<TypeQuantity[]>('http://localhost:8080/propositions/types', this.options);
   }
 
+  public getTopicByYear(start: string, end: string): Observable<StackedPieChartModel> {
+
+    let params = new HttpParams();
+
+    if (!!start) {
+      params = params.append('start', start)
+    }
+    if (!!end) {
+      params = params.append('end', end)
+    }
+
+    this.options.params = params;
+    return this.httpClient.get<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar', this.options);
+  }
 
   // }
   // tslint:disable-next-line:typedef
