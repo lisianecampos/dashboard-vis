@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -10,6 +10,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class FilterModalComponent implements OnInit {
 
   @Output() valuesChanged = new EventEmitter<number[]>();
+ // @Input() showValues: number[] = [];
+  @Input() disable: boolean = false;
 
   form!: FormGroup;
   start = 0;
@@ -18,10 +20,20 @@ export class FilterModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // this.form = new FormGroup({
+    //   startYear: new FormControl('', Validators.required),
+    //   endYear: new FormControl('', Validators.required),
+    // });
+  }
+
+  @Input() set showValues(value: number[]) {
     this.form = new FormGroup({
       startYear: new FormControl('', Validators.required),
       endYear: new FormControl('', Validators.required),
     });
+
+    this.form.controls['startYear'].setValue(value[0]);
+    this.form.controls['endYear'].setValue(value[1]);
   }
 
   saveValues(): void {
