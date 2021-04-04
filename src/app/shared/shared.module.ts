@@ -24,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { StackedBarChartComponent } from './widgets/stacked-bar-chart/stacked-bar-chart.component';
 import { BubbleChartComponent } from './widgets/bubble-chart/bubble-chart.component';
 import { TreeMapComponent } from './widgets/tree-map/tree-map.component';
+import { DonutChartComponent } from './widgets/donut-chart/donut-chart.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { TreeMapComponent } from './widgets/tree-map/tree-map.component';
     FilterModalComponent,
     StackedBarChartComponent,
     BubbleChartComponent,
-    TreeMapComponent
+    TreeMapComponent,
+    DonutChartComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +67,8 @@ import { TreeMapComponent } from './widgets/tree-map/tree-map.component';
     FilterModalComponent,
     StackedBarChartComponent,
     BubbleChartComponent,
-    TreeMapComponent
+    TreeMapComponent,
+    DonutChartComponent
   ],
 })
 export class SharedModule { }
