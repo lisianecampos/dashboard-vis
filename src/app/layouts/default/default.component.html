@@ -1,17 +1,20 @@
-<app-header (toggleSidebarForMe)="sideBarToggled($event)"></app-header>
+<div id="container">
 
+  <app-header (toggleSidebarForMe)="sideBarToggled($event)"></app-header>
 
-<mat-drawer-container>
+  <mat-drawer-container>
 
-  <mat-drawer mode="side" [opened]="sideBarOpened">
-<!--    <app-sidebar (valuesChanged)=""></app-sidebar>-->
-  </mat-drawer>
+<!--    <mat-drawer mode="side" [opened]="sideBarOpened">-->
+      <!--    <app-sidebar (valuesChanged)=""></app-sidebar>-->
+<!--    </mat-drawer>-->
 
-  <mat-drawer-content>
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
+<!--    <mat-drawer-content>-->
+      <router-outlet></router-outlet>
+<!--    </mat-drawer-content>-->
 
-</mat-drawer-container>
+  </mat-drawer-container>
+
+</div>
 
 
 <!--<app-footer></app-footer>-->

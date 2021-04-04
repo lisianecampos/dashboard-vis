@@ -38,6 +38,21 @@ export class DashboardService {
     return this.httpClient.get<TypeQuantity[]>('http://localhost:8080/propositions/types', this.options);
   }
 
+  public getPartiesQuantity(start: string, end: string): Observable<string[][]> {
+
+    let params = new HttpParams();
+
+    if (!!start) {
+      params = params.append('start', start)
+    }
+    if (!!end) {
+      params = params.append('end', end)
+    }
+
+    this.options.params = params;
+    return this.httpClient.get<string[][]>('http://localhost:8080/propositions/partiesQuantity', this.options);
+  }
+
   public getTopicByYear(start: string, end: string): Observable<StackedPieChartModel> {
 
     let params = new HttpParams();
