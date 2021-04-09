@@ -1,16 +1,28 @@
-
-
-
 <!--  <app-widget-area></app-widget-area>-->
+
+
 <!--  <app-sidebar (valuesChanged)="getData($event)"></app-sidebar>-->
 <!--  <button mat-raised-button (click)="addFilter()">Adicionar Filtro</button>-->
 
 <div class="filter">
-    <app-filter-modal (valuesChanged)="getDataTypes($event)" [showValues]="dateValues" [disable]="!controlStackChart"></app-filter-modal>
+<!--    <app-filter-modal (valuesChanged)="getDataTypes($event)" [showValues]="dateValues" [disable]="!controlStackChart"></app-filter-modal>-->
+<app-filter-modal (valuesChanged)="getDataTypes($event)" [disable]="!controlStackChart" [propositionsTotal]="totalPropositions"></app-filter-modal>
 
+
+
+<!--<mat-form-field appearance="outline">-->
+<!--  <mat-label>Selecione o intervalo de anos:</mat-label>-->
+<!--  <mat-date-range-input [formGroup]="range" [rangePicker]="picker">-->
+<!--    <input matStartDate formControlName="start" placeholder="Start date">-->
+<!--    <input matEndDate formControlName="end" placeholder="End date">-->
+<!--  </mat-date-range-input>-->
+<!--  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--  <mat-date-range-picker #picker></mat-date-range-picker>-->
+
+<!--  <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>-->
+<!--  <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>-->
+<!--</mat-form-field>-->
 </div>
-
-
 <!--<mat-divider></mat-divider>-->
 
 <br>

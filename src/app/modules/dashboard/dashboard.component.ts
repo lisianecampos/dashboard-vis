@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {FilterModalComponent} from '../../shared/components/filter-modal/filter-modal.component';
 import {TopicQuantity} from '../../models/TopicQuantity';
 import {StackedPieChartModel} from '../../models/StackedPieChartModel';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,8 @@ export class DashboardComponent implements OnInit {
   partiesQuantityFixed: any[][] = [];
   donutChartYear: number = 2021;
 
+  totalPropositions: string = '0';
+
   topicStackedChart: StackedPieChartModel = new StackedPieChartModel();
   topicStackedChartModel: StackedPieChartModel = new StackedPieChartModel();
 
@@ -37,14 +40,18 @@ export class DashboardComponent implements OnInit {
   control: boolean = false;
   sideBarOpened = false;
   modalShow = false;
+  range: FormGroup = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
   constructor(private dashboardService: DashboardService) {
   }
 
   ngOnInit(): void {
 
     console.log("stack" + this.controlStackChart);
-    this.getDataTypes([2020, 2020]);
-    this.dateValues = [2020, 2020];
+    this.getDataTypes([2018, 2020]);
+    this.dateValues = [2018, 2020];
   }
 
   addFilter(): void {
@@ -79,6 +86,15 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.propositionsPie = this.propositions.map(value => ({name: value.type, y: value.quantity}));
+
+          let total = 0;
+          for (let i = 0; i < this.propositions.length; i++) {
+
+            total = total + this.propositions[i].quantity;
+          }
+
+          this.totalPropositions = total.toLocaleString('pt-BR');
+
           this.controlPie = true;
           console.log(this.propositionsPie);
 

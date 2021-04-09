@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: row;
   align-items: start;
-  //margin-top: 30px;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .form-values {
@@ -16,7 +18,7 @@
 }
 
 input {
-  width: 60%;
+  width: 100%;
 }
 
 .years {
@@ -32,4 +34,37 @@ input {
 
 .form-title {
   font-family: Nunito, sans-serif;
+}
+
+.button {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.filter-total{
+  display: flex;;
+  flex-direction: column;
+}
+
+.propositions-title{
+  font-family: "Lucida Grande", sans-serif;
+  font-size: 20px;
+  //font-weight: bold;
+  //margin-top: 30px;
+}
+
+.propositions-info{
+  //margin-top: 25px;
+  font-family: "Lucida Grande", sans-serif;
+
+  text-align: center;
+  font-size: 30px;
+  //font-weight: bold;
+  //margin-left: 40%;
 }

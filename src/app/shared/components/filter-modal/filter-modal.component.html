@@ -1,34 +1,103 @@
-<!--<h1 mat-dialog-title>Filtros</h1>-->
-  <form [formGroup]="form" class="form-group">
-    <div class="title">
-      <span>Selecione o intervalo de anos de apresentação das proposições:</span>
-    </div>
-    <div class="form">
+<div class="form">
 
-      <div class="years">
+  <div class="filter-total">
 
+    <div class="calendar">
+      <mat-form-field appearance="outline">
+        <mat-label>Selecione o intervalo de anos:</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date">
+          <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
 
-        <div class="form-values">
-          <div class="form-group">
-            <label for="start-year" class="form-title">Ano início </label>
-            <input id="start-year" class="form-control" formControlName="startYear">
-          </div>
-        </div>
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+      </mat-form-field>
 
-        <div class="form-values">
-          <div class="form-group">
-            <label for="end-year" class="form-title">  Ano fim </label>
-            <input id="end-year" class="form-control" formControlName="endYear">
-          </div>
-        </div>
-      </div>
       <div class="button">
-        <button mat-raised-button [disabled]="disable" (click)="saveValues()">Atualizar</button>
+        <button mat-raised-button [disabled]="disableButton()" (click)="saveValues()">Atualizar</button>
       </div>
-
     </div>
 
-  </form>
-<!--  <button mat-button (click)="cancel()">No Thanks</button>-->
-<!--  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+    <mat-card>
+      <div class="calendar">
+    <span class="propositions-title">
+    Proposições recuperadas:
+    </span>
+
+        <div class="propositions-info">
+    <span>
+    {{totalPropositions}}
+    </span>
+        </div>
+      </div>
+    </mat-card>
+
+
+  </div>
+
+
+<!--  </div>-->
+
+
+  <mat-card>
+    <b>Fernando Collor</b>: 15 de março de 1990 até 29 de dezembro de 1992
+
+    <br>
+
+    <b>Fernando Henrique Cardoso</b>: 1º de janeiro de 1995 até 1º de janeiro de 2003
+
+    <br>
+
+    <b>Luiz Inácio Lula da Silva</b>: 1º de janeiro de 2003 até 1º de janeiro de 2011
+
+    <br>
+
+    <b>Dilma Rousseff</b>: 1° de janeiro de 2011 até 31 de agosto de 2016
+
+    <br>
+
+    <b>Michel Temer</b>: 31 de agosto de 2016 até 1º de janeiro de 2019
+
+    <br>
+
+    <b>Jair Bolsonaro</b>: desde 1º de janeiro de 2019
+
+  </mat-card>
+
+</div>
+
+
+<!--  <form [formGroup]="form" class="form-group">-->
+<!--    <div class="title">-->
+<!--      <span>Selecione o intervalo de anos de apresentação das proposições:</span>-->
+<!--    </div>-->
+<!--    <div class="form">-->
+
+<!--      <div class="years">-->
+
+
+<!--        <div class="form-values">-->
+<!--          <div class="form-group">-->
+<!--            <label for="start-year" class="form-title">Ano início </label>-->
+<!--            <input id="start-year" class="form-control" formControlName="startYear">-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="form-values">-->
+<!--          <div class="form-group">-->
+<!--            <label for="end-year" class="form-title">  Ano fim </label>-->
+<!--            <input id="end-year" class="form-control" formControlName="endYear">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="button">-->
+<!--        <button mat-raised-button [disabled]="disable" (click)="saveValues()">Atualizar</button>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--  </form>-->
 

@@ -25,6 +25,9 @@ import { StackedBarChartComponent } from './widgets/stacked-bar-chart/stacked-ba
 import { BubbleChartComponent } from './widgets/bubble-chart/bubble-chart.component';
 import { TreeMapComponent } from './widgets/tree-map/tree-map.component';
 import { DonutChartComponent } from './widgets/donut-chart/donut-chart.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import { DonutChartComponent } from './widgets/donut-chart/donut-chart.component
     NgxSliderModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatCardModule,
   ],
   exports: [
     SidebarComponent,
