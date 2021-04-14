@@ -28,6 +28,9 @@ import { DonutChartComponent } from './widgets/donut-chart/donut-chart.component
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
+import { StackedBarChartMandateComponent } from './widgets/stacked-bar-chart-mandate/stacked-bar-chart-mandate.component';
+import {MatInputModule} from '@angular/material/input';
+import { BubbleChartMandateComponent } from './widgets/bubble-chart-mandate/bubble-chart-mandate.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import {MatCardModule} from '@angular/material/card';
     StackedBarChartComponent,
     BubbleChartComponent,
     TreeMapComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    StackedBarChartMandateComponent,
+    BubbleChartMandateComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +67,7 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatDatepickerModule,
     MatCardModule,
+    MatInputModule,
   ],
   exports: [
     SidebarComponent,
@@ -74,7 +80,9 @@ import {MatCardModule} from '@angular/material/card';
     StackedBarChartComponent,
     BubbleChartComponent,
     TreeMapComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    StackedBarChartMandateComponent,
+    BubbleChartMandateComponent
   ],
 })
 export class SharedModule { }

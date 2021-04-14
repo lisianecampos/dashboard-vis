@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Propositions} from '../models/Propositions';
 import {TypeQuantity} from '../models/TypeQuantity';
 import {StackedPieChartModel} from '../models/StackedPieChartModel';
+import {BubbleChartInfo} from '../models/BubbleChartInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,23 @@ export class DashboardService {
 
     this.options.params = params;
     return this.httpClient.get<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar', this.options);
+  }
+
+  public getTopicByMandate(): Observable<StackedPieChartModel> {
+
+    return this.httpClient.get<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar-mandate');
+  }
+
+  public getBubbleChartMandate(): Observable<BubbleChartInfo> {
+
+    return this.httpClient.get<BubbleChartInfo>('http://localhost:8080/propositions/bubble-chart-mandate');
+
+  }
+
+  public getBubbleChartMandateInverse(): Observable<BubbleChartInfo> {
+
+    return this.httpClient.get<BubbleChartInfo>('http://localhost:8080/propositions/bubble-chart-mandate-inverse');
+
   }
 
   // }

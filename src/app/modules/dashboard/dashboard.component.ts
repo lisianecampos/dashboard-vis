@@ -11,6 +11,7 @@ import {FilterModalComponent} from '../../shared/components/filter-modal/filter-
 import {TopicQuantity} from '../../models/TopicQuantity';
 import {StackedPieChartModel} from '../../models/StackedPieChartModel';
 import {FormControl, FormGroup} from '@angular/forms';
+import {BubbleChartInfo} from '../../models/BubbleChartInfo';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,9 @@ export class DashboardComponent implements OnInit {
   controlPie: boolean = false;
   controlDonut: boolean = false;
   controlStackChart: boolean = false;
-  dateValues: number[] = [];
+  controlBubbleChart: boolean = false;
+
+  dateValues: number[] = [1546308000000, 1618110000000];
   partiesQuantity: string[][] = [];
   partiesQuantityFixed: any[][] = [];
   donutChartYear: number = 2021;
@@ -35,6 +38,16 @@ export class DashboardComponent implements OnInit {
 
   topicStackedChart: StackedPieChartModel = new StackedPieChartModel();
   topicStackedChartModel: StackedPieChartModel = new StackedPieChartModel();
+
+  topicStackedChartMandate: StackedPieChartModel = new StackedPieChartModel();
+  topicStackedChartModelMandate: StackedPieChartModel = new StackedPieChartModel();
+
+  bubbleChartTopicByMandate: BubbleChartInfo = new BubbleChartInfo();
+  bubbleChartTopicByMandateModel: BubbleChartInfo = new BubbleChartInfo();
+
+  bubbleChartTopicByMandateInverse: BubbleChartInfo = new BubbleChartInfo();
+  bubbleChartTopicByMandateInverseModel: BubbleChartInfo = new BubbleChartInfo();
+
 
   color: String = "red";
   control: boolean = false;
@@ -50,8 +63,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
     console.log("stack" + this.controlStackChart);
-    this.getDataTypes([2018, 2020]);
-    this.dateValues = [2018, 2020];
+    this.dateValues = [1546308000000, 1618110000000];
+    this.getDataTypes(this.dateValues);
   }
 
   addFilter(): void {
@@ -62,6 +75,9 @@ export class DashboardComponent implements OnInit {
     this.controlPie = false;
     this.controlDonut = false;
     this.controlStackChart = false;
+    this.controlBubbleChart = true;
+
+
     this.propositionsPie = [];
     this.partiesQuantityFixed = [];
     this.topicStackedChartModel = new StackedPieChartModel();
@@ -72,13 +88,56 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getTopicByYear(startyear.toString(), endyear.toString())
       .pipe(
         finalize(() => {
-          console.log(this.topicStackedChart);
           this.topicStackedChartModel = this.topicStackedChart;
           this.controlStackChart = true;
+          this.controlBubbleChart = false;
+          console.log(this.topicStackedChartModel);
+
         })
       )
       .subscribe(data => {
           this.topicStackedChart = data;
+        }
+      );
+
+    this.dashboardService.getTopicByMandate()
+      .pipe(
+        finalize(() => {
+          this.topicStackedChartModelMandate = this.topicStackedChartMandate;
+          console.log(this.topicStackedChartModelMandate);
+          this.controlStackChart = true;
+          this.controlBubbleChart = false;
+        })
+      )
+      .subscribe(data => {
+          this.topicStackedChartMandate = data;
+        }
+      );
+
+    this.dashboardService.getBubbleChartMandate()
+      .pipe(
+        finalize(() => {
+         this.bubbleChartTopicByMandateModel = this.bubbleChartTopicByMandate;
+          this.controlBubbleChart = true;
+
+        })
+      )
+      .subscribe(data => {
+          this.bubbleChartTopicByMandate = data;
+        }
+      );
+
+    this.dashboardService.getBubbleChartMandateInverse()
+      .pipe(
+        finalize(() => {
+          this.bubbleChartTopicByMandateInverseModel = this.bubbleChartTopicByMandateInverse;
+          console.log(this.bubbleChartTopicByMandateInverseModel);
+          this.controlBubbleChart = true;
+
+        })
+      )
+      .subscribe(data => {
+          this.bubbleChartTopicByMandateInverse = data;
         }
       );
 
@@ -120,7 +179,7 @@ export class DashboardComponent implements OnInit {
         }
       );
 
-
+//até aqui
     // this.dashboardService.getPropositions(startyear.toString(), endyear.toString())
     //   .pipe(
     //     finalize(() => {
