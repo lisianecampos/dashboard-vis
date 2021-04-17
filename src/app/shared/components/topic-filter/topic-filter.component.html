@@ -1,0 +1,14 @@
+<mat-form-field appearance="outline">
+  <mat-label>Selecione os temas</mat-label>
+  <mat-select [formControl]="topics" multiple>
+    <mat-select-trigger>
+      {{topics.value ? topics.value[0] : ''}}
+      <span *ngIf="topics.value?.length > 1" class="example-additional-selection">
+        (+{{topics.value.length - 1}} {{topics.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let topping of topicsList" [value]="topping" (onSelectionChange)="onSelect($event)" [disabled]="disabledValues">{{topping}}</mat-option>
+    <mat-option #allSelected (click)="allTopicsSelected()" [value]="0">Selecionar todos</mat-option>
+
+  </mat-select>
+</mat-form-field>

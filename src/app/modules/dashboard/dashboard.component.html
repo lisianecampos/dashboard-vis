@@ -1,57 +1,92 @@
 
-<div class="filter">
-<app-filter-modal (valuesChanged)="getDataTypes($event)" [showValues]="dateValues" [propositionsTotal]="totalPropositions" [disable]="!controlStackChart"></app-filter-modal>
 
 
-</div>
+<mat-tab-group>
+  <mat-tab label="Tipos de Projetos de Lei e Partidos">
+
+    <div class="filter">
+      <app-filter-modal (valuesChanged)="getFirstTab($event)" [showValues]="dateValues" [propositionsTotal]="totalPropositions" [disable]="!controlStackChart"></app-filter-modal>
+    </div>
+
+    <div class="chart-container">
+      <div class="pie-chart-container">
+        <app-widget-pie *ngIf="(propositionsPie.length !== 0) && (partiesQuantityFixed.length !== 0)" [data]="propositionsPie"></app-widget-pie>
+
+        <app-donut-chart *ngIf="(propositionsPie.length !== 0) && (partiesQuantityFixed.length !== 0)" [data]="partiesQuantityFixed" [year]="donutChartYear"></app-donut-chart>
+
+        <div *ngIf="!((propositionsPie.length !== 0) && (partiesQuantityFixed.length !== 0))" id="loader"></div>
+
+      </div>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Temas das Proposições por Ano e Mandato">
+
+    <app-topic-filter (topicsChanged)="getSelectedTopis($event)"></app-topic-filter>
+
+    <div class="filter">
+      <app-filter-modal (valuesChanged)="getSecondTab($event)" [showValues]="dateValues" [propositionsTotal]="totalPropositions" [disable]="!controlStackChart"></app-filter-modal>
+    </div>
+
+    <div class="chart-container">
+      <app-stacked-bar-chart *ngIf="(topicStackedChartModel.years.length !== 0) && (topicStackedChartModelMandate.years.length !== 0)" [data]="topicStackedChartModel"></app-stacked-bar-chart>
+
+    </div>
+
+    <div class="chart-container">
+      <app-stacked-bar-chart-mandate *ngIf="(topicStackedChartModel.years.length !== 0) && (topicStackedChartModelMandate.years.length !== 0)" [data]="topicStackedChartModelMandate"></app-stacked-bar-chart-mandate>
+
+    </div>
+
+    <div *ngIf="!((topicStackedChartModel.years.length !== 0) && (topicStackedChartModelMandate.years.length !== 0))" id="loader"></div>
+
+
+  </mat-tab>
+
+  <mat-tab label="Third">
+
+    <div class="filter">
+      <app-filter-modal (valuesChanged)="getThirdTab($event)" [showValues]="dateValues" [propositionsTotal]="totalPropositions" [disable]="!controlStackChart"></app-filter-modal>
+    </div>
+
+    <div class="chart-container">
+      <app-bubble-chart *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0) && (bubbleChartTopicByMandateModel.objects.length !== 0)" [data]="bubbleChartTopicByMandateModel"></app-bubble-chart>
+    </div>
+
+    <mat-divider *ngIf="controlStackChart && controlBubbleChart"></mat-divider>
+
+    <div class="chart-container">
+
+      <app-bubble-chart-mandate *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0) && (bubbleChartTopicByMandateInverseModel.objects.length !== 0)" [data]="bubbleChartTopicByMandateInverseModel"></app-bubble-chart-mandate>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>
 
 <br>
 <br>
-<div class="chart-container">
-  <div class="pie-chart-container">
-    <app-widget-pie *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0)" [data]="propositionsPie"></app-widget-pie>
 
-    <app-donut-chart *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0)"  [data]="partiesQuantityFixed" [year]="donutChartYear"></app-donut-chart>
 
-    <div *ngIf="!controlStackChart" id="loader"></div>
+<!--<mat-divider *ngIf="controlStackChart"></mat-divider>-->
 
-  </div>
-</div>
 
-<mat-divider *ngIf="controlStackChart"></mat-divider>
-
-<div class="chart-container">
-  <app-stacked-bar-chart *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0)" [data]="topicStackedChartModel"></app-stacked-bar-chart>
-
-</div>
 
 
 <!--<br>-->
 <div>
-  <div *ngIf="!controlBubbleChart" id="loader2"></div>
+<!--  <div *ngIf="!controlBubbleChart" id="loader2"></div>-->
 
-  <div class="chart-container">
-    <app-stacked-bar-chart-mandate *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModelMandate.years.length !== 0) && (partiesQuantityFixed.length !== 0)" [data]="topicStackedChartModelMandate"></app-stacked-bar-chart-mandate>
-  </div>
+
 
   <br>
 
-  <mat-divider *ngIf="controlStackChart && controlBubbleChart"></mat-divider>
+<!--  <mat-divider *ngIf="controlStackChart && controlBubbleChart"></mat-divider>-->
 
 
   <br>
   <br>
 
-  <div class="chart-container">
-    <app-bubble-chart *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0) && (bubbleChartTopicByMandateModel.objects.length !== 0)" [data]="bubbleChartTopicByMandateModel"></app-bubble-chart>
-  </div>
 
-  <mat-divider *ngIf="controlStackChart && controlBubbleChart"></mat-divider>
-
-  <div class="chart-container">
-
-    <app-bubble-chart-mandate *ngIf="(propositionsPie.length !== 0) && (topicStackedChartModel.years.length !== 0) && (partiesQuantityFixed.length !== 0) && (bubbleChartTopicByMandateInverseModel.objects.length !== 0)" [data]="bubbleChartTopicByMandateInverseModel"></app-bubble-chart-mandate>
-  </div>
 
 </div>
 

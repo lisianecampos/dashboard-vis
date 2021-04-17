@@ -17,6 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatTabsModule,
   ],
   providers: [
     DashboardService

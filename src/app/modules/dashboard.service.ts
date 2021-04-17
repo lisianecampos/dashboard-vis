@@ -6,6 +6,7 @@ import {Propositions} from '../models/Propositions';
 import {TypeQuantity} from '../models/TypeQuantity';
 import {StackedPieChartModel} from '../models/StackedPieChartModel';
 import {BubbleChartInfo} from '../models/BubbleChartInfo';
+import {StackBarBody} from '../models/StackBarBody';
 
 @Injectable({
   providedIn: 'root'
@@ -54,24 +55,17 @@ export class DashboardService {
     return this.httpClient.get<string[][]>('http://localhost:8080/propositions/partiesQuantity', this.options);
   }
 
-  public getTopicByYear(start: string, end: string): Observable<StackedPieChartModel> {
+  public getTopicByYear(body: StackBarBody): Observable<StackedPieChartModel> {
 
-    let params = new HttpParams();
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('content-type', 'application/json');
 
-    if (!!start) {
-      params = params.append('start', start)
-    }
-    if (!!end) {
-      params = params.append('end', end)
-    }
-
-    this.options.params = params;
-    return this.httpClient.get<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar', this.options);
+    return this.httpClient.put<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar', body);
   }
 
-  public getTopicByMandate(): Observable<StackedPieChartModel> {
+  public getTopicByMandate(body: StackBarBody): Observable<StackedPieChartModel> {
 
-    return this.httpClient.get<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar-mandate');
+    return this.httpClient.put<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar-mandate', body);
   }
 
   public getBubbleChartMandate(): Observable<BubbleChartInfo> {

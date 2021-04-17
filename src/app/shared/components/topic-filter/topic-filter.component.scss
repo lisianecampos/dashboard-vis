@@ -1,0 +1,60 @@
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.input {
+  width: 25%;
+}
+
+//.mat-select-panel .mat-option{
+//  background-color: #3cb371;
+//}
+//
+//.mat-pseudo-checkbox {
+//  color: #3cb371;
+//  background-color: #3cb371;
+//}
+//
+//.mat-primary .mat-pseudo-checkbox-checked {
+//  color: #3cb371;
+//  background-color: #3cb371;
+//}
+//
+//::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+//  background-color: red !important; /* Red background for example */
+//}
+//::ng-deep .mat-checkbox .mat-checkbox-frame {
+//  border-color: violet;
+//}
+
+
+//::ng-deep .mat-checkbox.mat-accent {
+//  .mat-checkbox-frame {
+//    border: 1px solid #3cb371;
+//  }
+//
+//  &.mat-checkbox-checked .mat-checkbox-background {
+//    background-color: white;
+//    border: 1px solid #3cb371;
+//  }
+//
+//  .mat-checkbox-checkmark-path {
+//    stroke: #3cb371 !important;
+//  }
+//}
+
+//.mat-pseudo-checkbox::after {
+//  color: red;
+//}
+//
+//.mat-pseudo-checkbox {
+//  background: lightblue;
+//}
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: unset;
+}
+
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background-color: #3cb371;
+}

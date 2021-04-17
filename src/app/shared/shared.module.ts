@@ -31,6 +31,8 @@ import {MatCardModule} from '@angular/material/card';
 import { StackedBarChartMandateComponent } from './widgets/stacked-bar-chart-mandate/stacked-bar-chart-mandate.component';
 import {MatInputModule} from '@angular/material/input';
 import { BubbleChartMandateComponent } from './widgets/bubble-chart-mandate/bubble-chart-mandate.component';
+import { TopicFilterComponent } from './components/topic-filter/topic-filter.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { BubbleChartMandateComponent } from './widgets/bubble-chart-mandate/bubb
     TreeMapComponent,
     DonutChartComponent,
     StackedBarChartMandateComponent,
-    BubbleChartMandateComponent
+    BubbleChartMandateComponent,
+    TopicFilterComponent
   ],
   imports: [
     CommonModule,
@@ -68,6 +71,7 @@ import { BubbleChartMandateComponent } from './widgets/bubble-chart-mandate/bubb
     MatDatepickerModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
   ],
   exports: [
     SidebarComponent,
@@ -82,7 +86,8 @@ import { BubbleChartMandateComponent } from './widgets/bubble-chart-mandate/bubb
     TreeMapComponent,
     DonutChartComponent,
     StackedBarChartMandateComponent,
-    BubbleChartMandateComponent
+    BubbleChartMandateComponent,
+    TopicFilterComponent
   ],
 })
 export class SharedModule { }

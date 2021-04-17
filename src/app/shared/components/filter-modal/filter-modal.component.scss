@@ -75,5 +75,31 @@
   margin-top: 30px;
   margin-left: 10px;
   margin-right: 10px;
-
 }
+
+
+//::ng-deep datepicker-value-example .mat-form-field-label{
+//  color:red;
+//}
+//
+//::ng-deep .mat-datepicker-toggle{
+//  color:red;
+//}
+//::ng-deep .mat-form-field-underline{
+//  background: red;
+//}
+
+::ng-deep .mat-calendar-body-cell-content.mat-focus-indicator.mat-calendar-body-selected {
+  background-color: lightgreen;
+}
+
+
+
+//::ng-deep .mat-calendar-table {
+//  td:first-child > .mat-calendar-body-cell-content {
+//    color: #dfa5a5 !important;
+//  }
+//  td:nth-child(7) > .mat-calendar-body-cell-content {
+//    color: #dfa5a5 !important;
+//  }
+//}
