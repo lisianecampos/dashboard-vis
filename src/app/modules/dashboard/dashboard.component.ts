@@ -1,14 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardService} from '../dashboard.service';
-import {Propositions} from '../../models/Propositions';
-import {PropositionModel} from '../../models/Proposition.model';
 import {take, finalize} from 'rxjs/operators';
-import {PieValues} from '../../models/PieValues';
 import {TypeQuantity} from '../../models/TypeQuantity';
-import {PieData} from '../../models/PieData';
-import {MatDialog} from '@angular/material/dialog';
-import {FilterModalComponent} from '../../shared/components/filter-modal/filter-modal.component';
-import {TopicQuantity} from '../../models/TopicQuantity';
 import {StackedPieChartModel} from '../../models/StackedPieChartModel';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {BubbleChartInfo} from '../../models/BubbleChartInfo';
@@ -23,7 +16,6 @@ export class DashboardComponent implements OnInit {
 
   propositions: TypeQuantity[] = [];
   propositionsPie: {name: string; y: number}[] = [];
-  propositionsPieParties: {name: string; y: number}[] = [];
 
   controlPie: boolean = false;
   controlDonut: boolean = false;
@@ -33,11 +25,6 @@ export class DashboardComponent implements OnInit {
   dateValues: number[] = [1546308000000, 1618110000000];
   partiesQuantity: string[][] = [];
   partiesQuantityFixed: any[][] = [];
-  donutChartYear: number = 2021;
-
-  firstTabLoading: boolean = false;
-  sndTabLoading: boolean = false;
-  thirdTabLoading: boolean = false;
 
   totalPropositions: string = '0';
 
@@ -55,23 +42,11 @@ export class DashboardComponent implements OnInit {
 
   selectedTopicsList: string[] = [];
 
-  color: String = "red";
-  control: boolean = false;
-  sideBarOpened = false;
-  modalShow = false;
-
-  // temasForm!: FormGroup;
-
-  temasList: any[] = [
-    {name: "Saúde", value: "Saúde"},
-    {name: "Comunicações", value: "Comunicações"},
-    {name: "Administracão Pública", value: "Administracão Pública"}
-    ];
-
   range: FormGroup = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
   });
+
   constructor(private dashboardService: DashboardService) {
 
   }
@@ -93,24 +68,14 @@ export class DashboardComponent implements OnInit {
     return new FormArray(arr);
   }
 
-  addFilter(): void {
-    this.modalShow = !this.modalShow;
-  }
-
   getSelectedTopis(topics: string[]) {
     this.selectedTopicsList = topics;
   }
 
   getFirstTab(values: number[]) {
-    this.controlPie = false;
-    this.controlDonut = false;
-    this.controlStackChart = false;
-    this.controlBubbleChart = true;
-
 
     this.propositionsPie = [];
     this.partiesQuantityFixed = [];
-    this.topicStackedChartModel = new StackedPieChartModel();
     let years = [];
     let startyear = values[0];
     let endyear = values[1];
@@ -128,8 +93,7 @@ export class DashboardComponent implements OnInit {
 
           this.totalPropositions = total.toLocaleString('pt-BR');
 
-          this.controlPie = true;
-          console.log(this.propositionsPie);
+          // this.controlPie = true;
 
         })
       )
@@ -142,10 +106,10 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.partiesQuantityFixed = this.partiesQuantity.map(value => [value[0], parseInt(value[1])]);
-          this.controlDonut = true;
+          // this.controlDonut = true;
 
           // this.propositionsPieParties = this.partiesQuantity.map(value => ({name: value[0], y: parseInt(value[1])}));
-          this.donutChartYear = parseInt('2019');
+          // this.donutChartYear = parseInt('2019');
 
         })
       )
@@ -157,18 +121,10 @@ export class DashboardComponent implements OnInit {
 
   getSecondTab(values: number[]) {
 
-    //enviar selectedTopicsList tb
-
     let stackBarBody = new StackBarBody(values[0].toString(), values[1].toString(), this.selectedTopicsList);
 
-    this.controlPie = false;
-    this.controlDonut = false;
     this.controlStackChart = false;
-    this.controlBubbleChart = true;
 
-
-    this.propositionsPie = [];
-    this.partiesQuantityFixed = [];
     this.topicStackedChartModel = new StackedPieChartModel();
     this.topicStackedChartModelMandate = new StackedPieChartModel();
     let years = [];
@@ -179,10 +135,6 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.topicStackedChartModel = this.topicStackedChart;
-          this.controlStackChart = true;
-          this.controlBubbleChart = false;
-          console.log(this.topicStackedChartModel);
-
         })
       )
       .subscribe(data => {
@@ -194,9 +146,6 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.topicStackedChartModelMandate = this.topicStackedChartMandate;
-          console.log(this.topicStackedChartModelMandate);
-          this.controlStackChart = true;
-          this.controlBubbleChart = false;
         })
       )
       .subscribe(data => {
@@ -208,11 +157,13 @@ export class DashboardComponent implements OnInit {
 
   getThirdTab(values: number[]) {
 
+    this.bubbleChartTopicByMandateModel = new BubbleChartInfo();
+    this.bubbleChartTopicByMandateInverseModel = new BubbleChartInfo();
+
     this.dashboardService.getBubbleChartMandate()
       .pipe(
         finalize(() => {
           this.bubbleChartTopicByMandateModel = this.bubbleChartTopicByMandate;
-          this.controlBubbleChart = true;
 
         })
       )
@@ -225,8 +176,6 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.bubbleChartTopicByMandateInverseModel = this.bubbleChartTopicByMandateInverse;
-          console.log(this.bubbleChartTopicByMandateInverseModel);
-          this.controlBubbleChart = true;
 
         })
       )
@@ -345,10 +294,4 @@ export class DashboardComponent implements OnInit {
     //   );
 
   }
-
-
-  sideBarToggled($event: any): void {
-    this.sideBarOpened = !this.sideBarOpened;
-  }
-
 }

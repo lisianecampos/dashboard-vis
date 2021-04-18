@@ -41,7 +41,7 @@
   margin-left: 10px;
 }
 
-.calendar {
+.propositions-total {
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -52,22 +52,16 @@
   flex-direction: column;
 }
 
-.propositions-title{
-  font-family: "Lucida Grande", sans-serif;
-  font-size: 20px;
-  //font-weight: bold;
-  //margin-top: 30px;
-}
-
-.propositions-info{
-  //margin-top: 25px;
-  font-family: "Lucida Grande", sans-serif;
-
-  text-align: center;
-  font-size: 30px;
-  //font-weight: bold;
-  //margin-left: 40%;
-}
+//.propositions-title{
+//  font-family: "Lucida Grande", sans-serif;
+//  font-size: 20px;
+//}
+//
+//.propositions-info{
+//  font-family: "Lucida Grande", sans-serif;
+//  text-align: center;
+//  font-size: 30px;
+//}
 
 .text{
   font-family: "Lucida Grande", sans-serif;

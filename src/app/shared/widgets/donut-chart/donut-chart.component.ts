@@ -13,7 +13,6 @@ export class DonutChartComponent implements OnInit {
   constructor() { }
 
   @Input() data: any[][] = [];
-  @Input() year: number = 0;
 
   Highcharts: any = Highcharts;
   chartOptions: any;

@@ -40,7 +40,7 @@ export class BubbleChartComponent implements OnInit {
           zMin: 0,
           zMax: 1000,
           layoutAlgorithm: {
-            gravitationalConstant: 0.0,
+            gravitationalConstant: 0.05,
             splitSeries: true,
             seriesInteraction: false,
             dragBetweenSeries: true,
