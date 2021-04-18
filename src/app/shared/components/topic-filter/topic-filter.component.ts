@@ -14,9 +14,10 @@ export class TopicFilterComponent implements OnInit {
   @Output() topicsChanged = new EventEmitter<string[]>();
   topics = new FormControl();
   selectedTopics: string[] = [];
-  disabledValues: boolean = false;
+  controlDisable: boolean = false;
+  allTopicsLabel: string = 'Todos os temas';
 
-  topicsList: string[] = [ 'Selecionar todos',
+  topicsList: string[] = [
     'Administração Pública', 'Arte, Cultura e Religião', 'Comunicações', 'Esporte e Lazer', 'Economia', 'Cidades e Desenvolvimento Urbano',
     'Direito Civil e Processual Civil','Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Educação', 'Meio Ambiente e Desenvolvimento Sustentável',
     'Estrutura Fundiária', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar', 'Energia, Recursos Hídricos e Minerais',
@@ -34,24 +35,38 @@ export class TopicFilterComponent implements OnInit {
 
   onSelect(topic: MatOptionSelectionChange) {
 
-    // topic.source.select();
-    this.selectedTopics.push(topic.source.value);
+    if(topic.source.selected) {
+      this.selectedTopics.push(topic.source.value);
 
+    }
     this.topicsChanged.emit(this.selectedTopics);
   }
 
-  allTopicsSelected() {
-    this.disabledValues = true;
+  allTopicsSelected(topic: MatOptionSelectionChange) {
 
-      this.selectedTopics.push('Administração Pública', 'Arte, Cultura e Religião', 'Comunicações', 'Esporte e Lazer', 'Economia', 'Cidades e Desenvolvimento Urbano',
+    this.selectedTopics = [];
+    if(topic.source.selected){
+
+      this.controlDisable = true;
+
+      this.topics.setValue([
+        'Administração Pública', 'Arte, Cultura e Religião', 'Comunicações', 'Esporte e Lazer', 'Economia', 'Cidades e Desenvolvimento Urbano',
         'Direito Civil e Processual Civil','Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Educação', 'Meio Ambiente e Desenvolvimento Sustentável',
         'Estrutura Fundiária', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar', 'Energia, Recursos Hídricos e Minerais',
         'Relações Internacionais e Comércio Exterior', 'Saúde', 'Defesa e Segurança', 'Trabalho e Emprego','Turismo', 'Viação, Transporte e Mobilidade',
         'Ciência, Tecnologia e Inovação', 'Agricultura, Pecuária, Pesca e Extrativismo','Indústria, Comércio e Serviços','Direito e Defesa do Consumidor',
         'Direito Constitucional','Finanças Públicas e Orçamento','Homenagens e Datas Comemorativas', 'Política, Partidos e Eleições','Direito e Justiça',
-        'Ciências Exatas e da Terra','Ciências Sociais e Humanas');
+        'Ciências Exatas e da Terra','Ciências Sociais e Humanas'
+      ]);
 
+      topic.source.select();
+      this.selectedTopics.concat(this.topicsList);
+    }
+    else {
+      this.controlDisable = false;
+      this.topics.setValue([]);
+    }
     this.topicsChanged.emit(this.selectedTopics);
 
   }
-  }
+}

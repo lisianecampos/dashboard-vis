@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit {
 
   getSelectedTopis(topics: string[]) {
     this.selectedTopicsList = topics;
+    console.log(topics);
   }
 
   getFirstTab(values: number[]) {
