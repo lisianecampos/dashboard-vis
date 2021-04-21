@@ -24,7 +24,7 @@ export class TopicFilterComponent implements OnInit {
     'Relações Internacionais e Comércio Exterior', 'Saúde', 'Defesa e Segurança', 'Trabalho e Emprego','Turismo', 'Viação, Transporte e Mobilidade',
     'Ciência, Tecnologia e Inovação', 'Agricultura, Pecuária, Pesca e Extrativismo','Indústria, Comércio e Serviços','Direito e Defesa do Consumidor',
     'Direito Constitucional','Finanças Públicas e Orçamento','Homenagens e Datas Comemorativas', 'Política, Partidos e Eleições','Direito e Justiça',
-    'Ciências Exatas e da Terra','Ciências Sociais e Humanas'
+    'Ciências Exatas e da Terra','Ciências Sociais e Humanas','Não Especificado'
   ];
 
   constructor() { }
@@ -56,7 +56,7 @@ export class TopicFilterComponent implements OnInit {
         'Relações Internacionais e Comércio Exterior', 'Saúde', 'Defesa e Segurança', 'Trabalho e Emprego','Turismo', 'Viação, Transporte e Mobilidade',
         'Ciência, Tecnologia e Inovação', 'Agricultura, Pecuária, Pesca e Extrativismo','Indústria, Comércio e Serviços','Direito e Defesa do Consumidor',
         'Direito Constitucional','Finanças Públicas e Orçamento','Homenagens e Datas Comemorativas', 'Política, Partidos e Eleições','Direito e Justiça',
-        'Ciências Exatas e da Terra','Ciências Sociais e Humanas'
+        'Ciências Exatas e da Terra','Ciências Sociais e Humanas','Não Especificado'
       ]);
 
       topic.source.select();
