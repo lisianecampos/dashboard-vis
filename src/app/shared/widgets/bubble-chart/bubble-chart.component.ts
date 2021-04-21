@@ -33,6 +33,9 @@ export class BubbleChartComponent implements OnInit {
         useHTML: true,
         pointFormat: '<b>{point.name}:</b> {point.value} proposições<sub></sub>'
       },
+      credits: {
+        enabled: false
+      },
       plotOptions: {
         packedbubble: {
           minSize: '20%',

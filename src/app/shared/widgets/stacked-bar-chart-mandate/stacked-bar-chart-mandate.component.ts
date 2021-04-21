@@ -40,6 +40,9 @@ export class StackedBarChartMandateComponent implements OnInit {
       legend: {
         reversed: true
       },
+      credits: {
+        enabled: false
+      },
       plotOptions: {
         series: {
           stacking: 'normal'

@@ -41,6 +41,9 @@ export class StackedBarChartComponent implements OnInit {
       legend: {
         reversed: true
       },
+      credits: {
+        enabled: false
+      },
       plotOptions: {
         series: {
           stacking: 'normal'
