@@ -33,7 +33,7 @@ export class DonutChartComponent implements OnInit {
         // y: 60
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '<b>{point.percentage:.1f}%</b><br>({point.y} proposições)'
       },
       credits: {
         enabled: false

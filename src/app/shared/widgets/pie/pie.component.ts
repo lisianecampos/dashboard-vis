@@ -28,7 +28,7 @@ export class PieComponent implements OnInit {
         text: 'Tipos de Projetos de Lei'
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '<b>{point.percentage:.1f}%</b><br>({point.y} proposições)<br> '
       },
       accessibility: {
         point: {
