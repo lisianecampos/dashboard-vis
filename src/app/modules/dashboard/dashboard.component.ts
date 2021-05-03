@@ -53,7 +53,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("stack" + this.controlStackChart);
     this.dateValues = [1546308000000, 1618110000000];
     // this.getDataTypes(this.dateValues);
     this.getFirstTab(this.dateValues);
@@ -173,17 +172,17 @@ export class DashboardComponent implements OnInit {
         }
       );
 
-    this.dashboardService.getBubbleChartMandateInverse()
-      .pipe(
-        finalize(() => {
-          this.bubbleChartTopicByMandateInverseModel = this.bubbleChartTopicByMandateInverse;
-
-        })
-      )
-      .subscribe(data => {
-          this.bubbleChartTopicByMandateInverse = data;
-        }
-      );
+    // this.dashboardService.getBubbleChartMandateInverse()
+    //   .pipe(
+    //     finalize(() => {
+    //       this.bubbleChartTopicByMandateInverseModel = this.bubbleChartTopicByMandateInverse;
+    //
+    //     })
+    //   )
+    //   .subscribe(data => {
+    //       this.bubbleChartTopicByMandateInverse = data;
+    //     }
+    //   );
   }
 
   getDataTypes(values: number[]) {

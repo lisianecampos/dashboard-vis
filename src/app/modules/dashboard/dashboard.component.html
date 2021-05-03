@@ -1,5 +1,5 @@
 <mat-tab-group>
-  <mat-tab label="Tipos de Projetos de Lei e Partidos">
+  <mat-tab label="Tipos de Projetos de Lei e Partidos dos Autores: Pie Chart e Semi Circle Donut Chart">
 
     <div class="form">
       <div class="calendar-propositions-total">
@@ -132,7 +132,7 @@
 
   </mat-tab>
 
-  <mat-tab label="Temas das Proposições por Mandato: Bubble Chart">
+  <mat-tab label="Temas das Proposições por Mandato: Packed Bubble Chart">
 
 <!--    <div class="filter">-->
 <!--      <app-filter-modal (valuesChanged)="getThirdTab($event)" [showValues]="dateValues"-->
@@ -163,20 +163,20 @@
 
       <div class="chart-container">
         <app-bubble-chart
-          *ngIf="(bubbleChartTopicByMandateInverseModel.objects.length !== 0) && (bubbleChartTopicByMandateModel.objects.length !== 0)"
+          *ngIf="(bubbleChartTopicByMandateModel.objects.length !== 0)"
           [data]="bubbleChartTopicByMandateModel"></app-bubble-chart>
 
         <div class="stack-bar-container bubble-spinner">
-          <mat-spinner  *ngIf="!((bubbleChartTopicByMandateInverseModel.objects.length !== 0) && (bubbleChartTopicByMandateModel.objects.length !== 0))"></mat-spinner>
+          <mat-spinner  *ngIf="!(bubbleChartTopicByMandateModel.objects.length !== 0)"></mat-spinner>
         </div>
       </div>
 
-      <div class="chart-container">
-        <app-bubble-chart-mandate
-          *ngIf="(bubbleChartTopicByMandateInverseModel.objects.length !== 0) && (bubbleChartTopicByMandateModel.objects.length !== 0)"
-          [data]="bubbleChartTopicByMandateInverseModel"></app-bubble-chart-mandate>
+<!--      <div class="chart-container">-->
+<!--        <app-bubble-chart-mandate-->
+<!--          *ngIf="(bubbleChartTopicByMandateInverseModel.objects.length !== 0) && (bubbleChartTopicByMandateModel.objects.length !== 0)"-->
+<!--          [data]="bubbleChartTopicByMandateInverseModel"></app-bubble-chart-mandate>-->
 
-      </div>
+<!--      </div>-->
   </mat-tab>
 </mat-tab-group>
 
