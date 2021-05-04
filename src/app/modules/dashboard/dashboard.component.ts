@@ -173,17 +173,17 @@ export class DashboardComponent implements OnInit {
         }
       );
 
-    this.dashboardService.getBubbleChartMandateInverse()
-      .pipe(
-        finalize(() => {
-          this.bubbleChartTopicByMandateInverseModel = this.bubbleChartTopicByMandateInverse;
-
-        })
-      )
-      .subscribe(data => {
-          this.bubbleChartTopicByMandateInverse = data;
-        }
-      );
+    // this.dashboardService.getBubbleChartMandateInverse()
+    //   .pipe(
+    //     finalize(() => {
+    //       this.bubbleChartTopicByMandateInverseModel = this.bubbleChartTopicByMandateInverse;
+    //
+    //     })
+    //   )
+    //   .subscribe(data => {
+    //       this.bubbleChartTopicByMandateInverse = data;
+    //     }
+    //   );
   }
 
   getDataTypes(values: number[]) {

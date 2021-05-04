@@ -11,8 +11,6 @@ import {StackBarBody} from '../models/StackBarBody';
 })
 export class DashboardService {
 
-  apiUrl = 'http://localhost:8080/propositions/types';
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,14 +26,14 @@ export class DashboardService {
     let params = new HttpParams();
 
     if (!!start) {
-      params = params.append('start', start)
+      params = params.append('start', start);
     }
     if (!!end) {
-      params = params.append('end', end)
+      params = params.append('end', end);
     }
 
     this.options.params = params;
-    return this.httpClient.get<TypeQuantity[]>('http://localhost:8080/propositions/types', this.options);
+    return this.httpClient.get<TypeQuantity[]>('https://propositionsdash.herokuapp.com/propositions/types', this.options);
   }
 
   public getPartiesQuantity(start: string, end: string): Observable<string[][]> {
@@ -43,38 +41,37 @@ export class DashboardService {
     let params = new HttpParams();
 
     if (!!start) {
-      params = params.append('start', start)
+      params = params.append('start', start);
     }
     if (!!end) {
-      params = params.append('end', end)
+      params = params.append('end', end);
     }
 
     this.options.params = params;
-    return this.httpClient.get<string[][]>('http://localhost:8080/propositions/partiesQuantity', this.options);
+    return this.httpClient.get<string[][]>('https://propositionsdash.herokuapp.com/propositions/partiesQuantity', this.options);
   }
 
   public getTopicByYear(body: StackBarBody): Observable<StackedPieChartModel> {
 
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
-
-    return this.httpClient.put<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar', body);
+    return this.httpClient.put<StackedPieChartModel>('https://propositionsdash.herokuapp.com/propositions/stack-bar', body);
   }
 
   public getTopicByMandate(body: StackBarBody): Observable<StackedPieChartModel> {
 
-    return this.httpClient.put<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar-mandate', body);
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('content-type', 'application/json');
+    return this.httpClient.put<StackedPieChartModel>('https://propositionsdash.herokuapp.com/propositions/stack-bar-mandate', body);
   }
 
   public getBubbleChartMandate(): Observable<BubbleChartInfo> {
 
-    return this.httpClient.get<BubbleChartInfo>('http://localhost:8080/propositions/bubble-chart-mandate');
+    return this.httpClient.get<BubbleChartInfo>('https://propositionsdash.herokuapp.com/propositions/bubble-chart-mandate');
 
   }
 
   public getBubbleChartMandateInverse(): Observable<BubbleChartInfo> {
 
-    return this.httpClient.get<BubbleChartInfo>('http://localhost:8080/propositions/bubble-chart-mandate-inverse');
+    return this.httpClient.get<BubbleChartInfo>('https://propositionsdash.herokuapp.com/propositions/bubble-chart-mandate-inverse');
 
   }
 }
