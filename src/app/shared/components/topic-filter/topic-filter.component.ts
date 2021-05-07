@@ -18,19 +18,37 @@ export class TopicFilterComponent implements OnInit {
   allTopicsLabel: string = 'Todos os temas';
 
   topicsList: string[] = [
-    'Administração Pública', 'Arte, Cultura e Religião', 'Comunicações', 'Esporte e Lazer', 'Economia', 'Cidades e Desenvolvimento Urbano',
-    'Direito Civil e Processual Civil','Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Educação', 'Meio Ambiente e Desenvolvimento Sustentável',
-    'Estrutura Fundiária', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar', 'Energia, Recursos Hídricos e Minerais',
-    'Relações Internacionais e Comércio Exterior', 'Saúde', 'Defesa e Segurança', 'Trabalho e Emprego','Turismo', 'Viação, Transporte e Mobilidade',
-    'Ciência, Tecnologia e Inovação', 'Agricultura, Pecuária, Pesca e Extrativismo','Indústria, Comércio e Serviços','Direito e Defesa do Consumidor',
-    'Direito Constitucional','Finanças Públicas e Orçamento','Homenagens e Datas Comemorativas', 'Política, Partidos e Eleições','Direito e Justiça',
-    'Ciências Exatas e da Terra','Ciências Sociais e Humanas','Não Especificado'
+    'Administração Pública', 'Agricultura, Pecuária, Pesca e Extrativismo', 'Arte, Cultura e Religião', 'Cidades e Desenvolvimento Urbano', 'Ciências Exatas e da Terra',
+    'Ciências Sociais e Humanas',
+    'Ciência, Tecnologia e Inovação', 'Comunicações', 'Defesa e Segurança', 'Direito Civil e Processual Civil', 'Direito Constitucional',
+    'Direito e Defesa do Consumidor', 'Direito e Justiça',
+    'Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Economia', 'Educação', 'Energia, Recursos Hídricos e Minerais', 'Esporte e Lazer',
+    'Estrutura Fundiária', 'Finanças Públicas e Orçamento',
+    'Homenagens e Datas Comemorativas', 'Indústria, Comércio e Serviços', 'Meio Ambiente e Desenvolvimento Sustentável', 'Não Especificado',
+    'Política, Partidos e Eleições', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar',
+    'Relações Internacionais e Comércio Exterior', 'Saúde', 'Trabalho e Emprego', 'Turismo', 'Viação, Transporte e Mobilidade',
   ];
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.topics.value);
+
+    this.topics.setValue([
+      // tslint:disable-next-line:max-line-length
+      'Administração Pública', 'Agricultura, Pecuária, Pesca e Extrativismo', 'Arte, Cultura e Religião', 'Cidades e Desenvolvimento Urbano', 'Ciências Exatas e da Terra',
+      'Ciências Sociais e Humanas',
+      'Ciência, Tecnologia e Inovação', 'Comunicações', 'Defesa e Segurança', 'Direito Civil e Processual Civil', 'Direito Constitucional',
+      'Direito e Defesa do Consumidor', 'Direito e Justiça',
+      'Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Economia', 'Educação', 'Energia, Recursos Hídricos e Minerais', 'Esporte e Lazer',
+      'Estrutura Fundiária', 'Finanças Públicas e Orçamento',
+      'Homenagens e Datas Comemorativas', 'Indústria, Comércio e Serviços', 'Meio Ambiente e Desenvolvimento Sustentável', 'Não Especificado',
+      'Política, Partidos e Eleições', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar',
+      'Relações Internacionais e Comércio Exterior', 'Saúde', 'Trabalho e Emprego', 'Turismo', 'Viação, Transporte e Mobilidade',
+    ]);
+
+    // topic.source.select();
+    this.selectedTopics.concat(this.topicsList);
   }
 
   onSelect(topic: MatOptionSelectionChange) {
@@ -50,13 +68,15 @@ export class TopicFilterComponent implements OnInit {
       this.controlDisable = true;
 
       this.topics.setValue([
-        'Administração Pública', 'Arte, Cultura e Religião', 'Comunicações', 'Esporte e Lazer', 'Economia', 'Cidades e Desenvolvimento Urbano',
-        'Direito Civil e Processual Civil','Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Educação', 'Meio Ambiente e Desenvolvimento Sustentável',
-        'Estrutura Fundiária', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar', 'Energia, Recursos Hídricos e Minerais',
-        'Relações Internacionais e Comércio Exterior', 'Saúde', 'Defesa e Segurança', 'Trabalho e Emprego','Turismo', 'Viação, Transporte e Mobilidade',
-        'Ciência, Tecnologia e Inovação', 'Agricultura, Pecuária, Pesca e Extrativismo','Indústria, Comércio e Serviços','Direito e Defesa do Consumidor',
-        'Direito Constitucional','Finanças Públicas e Orçamento','Homenagens e Datas Comemorativas', 'Política, Partidos e Eleições','Direito e Justiça',
-        'Ciências Exatas e da Terra','Ciências Sociais e Humanas','Não Especificado'
+        'Administração Pública', 'Agricultura, Pecuária, Pesca e Extrativismo', 'Arte, Cultura e Religião', 'Cidades e Desenvolvimento Urbano', 'Ciências Exatas e da Terra',
+        'Ciências Sociais e Humanas',
+        'Ciência, Tecnologia e Inovação', 'Comunicações', 'Defesa e Segurança', 'Direito Civil e Processual Civil', 'Direito Constitucional',
+        'Direito e Defesa do Consumidor', 'Direito e Justiça',
+        'Direito Penal e Processual Penal', 'Direitos Humanos e Minorias', 'Economia', 'Educação', 'Energia, Recursos Hídricos e Minerais', 'Esporte e Lazer',
+        'Estrutura Fundiária', 'Finanças Públicas e Orçamento',
+        'Homenagens e Datas Comemorativas', 'Indústria, Comércio e Serviços', 'Meio Ambiente e Desenvolvimento Sustentável', 'Não Especificado',
+        'Política, Partidos e Eleições', 'Previdência e Assistência Social', 'Processo Legislativo e Atuação Parlamentar',
+        'Relações Internacionais e Comércio Exterior', 'Saúde', 'Trabalho e Emprego', 'Turismo', 'Viação, Transporte e Mobilidade',
       ]);
 
       topic.source.select();

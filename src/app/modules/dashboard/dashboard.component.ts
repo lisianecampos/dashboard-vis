@@ -27,6 +27,9 @@ export class DashboardComponent implements OnInit {
   partiesQuantityFixed: any[][] = [];
 
   totalPropositions: string = '0';
+  totalPropositions2: string = '0';
+  allPropositions = 88568;
+  totalPropositions3: string = this.allPropositions.toLocaleString('pt-BR');
 
   topicStackedChart: StackedPieChartModel = new StackedPieChartModel();
   topicStackedChartModel: StackedPieChartModel = new StackedPieChartModel();
@@ -77,6 +80,7 @@ export class DashboardComponent implements OnInit {
 
     this.propositionsPie = [];
     this.partiesQuantityFixed = [];
+    this.totalPropositions = '0';
     let years = [];
     let startyear = values[0];
     let endyear = values[1];
@@ -94,8 +98,6 @@ export class DashboardComponent implements OnInit {
 
           this.totalPropositions = total.toLocaleString('pt-BR');
 
-          // this.controlPie = true;
-
         })
       )
       .subscribe(data => {
@@ -107,10 +109,6 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.partiesQuantityFixed = this.partiesQuantity.map(value => [value[0], parseInt(value[1])]);
-          // this.controlDonut = true;
-
-          // this.propositionsPieParties = this.partiesQuantity.map(value => ({name: value[0], y: parseInt(value[1])}));
-          // this.donutChartYear = parseInt('2019');
 
         })
       )
@@ -125,6 +123,7 @@ export class DashboardComponent implements OnInit {
     let stackBarBody = new StackBarBody(values[0].toString(), values[1].toString(), this.selectedTopicsList);
 
     this.controlStackChart = false;
+    this.totalPropositions2 = '0';
 
     this.topicStackedChartModel = new StackedPieChartModel();
     this.topicStackedChartModelMandate = new StackedPieChartModel();
@@ -136,6 +135,18 @@ export class DashboardComponent implements OnInit {
       .pipe(
         finalize(() => {
           this.topicStackedChartModel = this.topicStackedChart;
+
+          const topics = this.topicStackedChartModel.topicQuantity.length;
+          let total = 0;
+          let value = 0;
+          for (let i = 0; i < topics; i++) {
+            // tslint:disable-next-line:prefer-for-of
+            for (let j = 0; j < this.topicStackedChartModel.years.length; j++) {
+              value = parseInt(this.topicStackedChartModel.topicQuantity[i].data[j]);
+              total = total + value;
+            }
+          }
+          this.totalPropositions2 = total.toLocaleString('pt-BR');
         })
       )
       .subscribe(data => {

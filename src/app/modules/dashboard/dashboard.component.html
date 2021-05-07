@@ -75,7 +75,7 @@
             <app-topic-filter (topicsChanged)="getSelectedTopis($event)"></app-topic-filter>
           </div>
           <app-filter-modal (valuesChanged)="getSecondTab($event)" [showValues]="dateValues"
-                            [propositionsTotal]="totalPropositions" [disable]="!((topicStackedChartModel.years.length !== 0) && (topicStackedChartModelMandate.years.length !== 0))"></app-filter-modal>
+                            [propositionsTotal]="totalPropositions2" [disable]="!((topicStackedChartModel.years.length !== 0) && (topicStackedChartModelMandate.years.length !== 0))"></app-filter-modal>
         </div>
 
         <div>
@@ -86,7 +86,7 @@
 
             <div class="propositions-info">
             <span>
-            {{totalPropositions}}
+            {{totalPropositions2}}
             </span>
             </div>
           </div>
@@ -139,27 +139,40 @@
 <!--                        [propositionsTotal]="totalPropositions" [disable]="!controlStackChart"></app-filter-modal>-->
 <!--    </div>-->
 
-    <div class="mat-card-info">
-      <mat-card>
-        <p style="font-size:17px;">Mandatos Presidenciais desde 1990:</p>
-        <b>Fernando Collor</b>: 15 de março de 1990 até 29 de dezembro de 1992
-        <br>
-        <b>Itamar Franco</b>: 29 de dezembro de 1992 até 1º de janeiro de 1995
-        <br>
-        <b>Fernando Henrique Cardoso</b>: 1º de janeiro de 1995 até 1º de janeiro de 2003
-        <br>
-        <b>Luiz Inácio Lula da Silva</b>: 1º de janeiro de 2003 até 1º de janeiro de 2011
-        <br>
-        <b>Dilma Rousseff</b>: 1° de janeiro de 2011 até 31 de agosto de 2016
-        <br>
-        <b>Michel Temer</b>: 31 de agosto de 2016 até 1º de janeiro de 2019
+    <div class="form">
+      <div class="propositions-total">
+          <span class="propositions-title">
+          Proposições recuperadas:
+          </span>
 
-        <br>
-        <b>Jair Bolsonaro</b>: desde 1º de janeiro de 2019
+        <div class="propositions-info">
+            <span>
+            {{totalPropositions3}}
+            </span>
+        </div>
+      </div>
 
-      </mat-card>
+      <div class="mat-card-info">
+        <mat-card>
+          <p style="font-size:17px;">Mandatos Presidenciais desde 1990:</p>
+          <b>Fernando Collor</b>: 15 de março de 1990 até 29 de dezembro de 1992
+          <br>
+          <b>Itamar Franco</b>: 29 de dezembro de 1992 até 1º de janeiro de 1995
+          <br>
+          <b>Fernando Henrique Cardoso</b>: 1º de janeiro de 1995 até 1º de janeiro de 2003
+          <br>
+          <b>Luiz Inácio Lula da Silva</b>: 1º de janeiro de 2003 até 1º de janeiro de 2011
+          <br>
+          <b>Dilma Rousseff</b>: 1° de janeiro de 2011 até 31 de agosto de 2016
+          <br>
+          <b>Michel Temer</b>: 31 de agosto de 2016 até 1º de janeiro de 2019
+
+          <br>
+          <b>Jair Bolsonaro</b>: desde 1º de janeiro de 2019
+
+        </mat-card>
+      </div>
     </div>
-
 
       <div class="chart-container">
         <app-bubble-chart
