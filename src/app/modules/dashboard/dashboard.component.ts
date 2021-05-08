@@ -17,12 +17,10 @@ export class DashboardComponent implements OnInit {
   propositions: TypeQuantity[] = [];
   propositionsPie: {name: string; y: number}[] = [];
 
-  controlPie: boolean = false;
-  controlDonut: boolean = false;
   controlStackChart: boolean = false;
   controlBubbleChart: boolean = false;
 
-  dateValues: number[] = [1546308000000, 1618110000000];
+  dateValues: number[] = [631159200000, 1609470000000];
   partiesQuantity: string[][] = [];
   partiesQuantityFixed: any[][] = [];
 
@@ -56,7 +54,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("stack" + this.controlStackChart);
     this.dateValues = [1546308000000, 1618110000000];
     // this.getDataTypes(this.dateValues);
     this.getFirstTab(this.dateValues);
@@ -131,10 +128,11 @@ export class DashboardComponent implements OnInit {
     let startyear = values[0];
     let endyear = values[1];
 
-    this.dashboardService.getTopicByYear(stackBarBody)
+    this.dashboardService.getTopicByYear2(stackBarBody)
       .pipe(
         finalize(() => {
           this.topicStackedChartModel = this.topicStackedChart;
+          this.topicStackedChartModelMandate = this.topicStackedChartMandate;
 
           const topics = this.topicStackedChartModel.topicQuantity.length;
           let total = 0;
@@ -150,20 +148,21 @@ export class DashboardComponent implements OnInit {
         })
       )
       .subscribe(data => {
-          this.topicStackedChart = data;
+          this.topicStackedChart = data[0];
+          this.topicStackedChartMandate = data[1];
         }
       );
 
-    this.dashboardService.getTopicByMandate(stackBarBody)
-      .pipe(
-        finalize(() => {
-          this.topicStackedChartModelMandate = this.topicStackedChartMandate;
-        })
-      )
-      .subscribe(data => {
-          this.topicStackedChartMandate = data;
-        }
-      );
+    // this.dashboardService.getTopicByMandate(stackBarBody)
+    //   .pipe(
+    //     finalize(() => {
+    //       this.topicStackedChartModelMandate = this.topicStackedChartMandate;
+    //     })
+    //   )
+    //   .subscribe(data => {
+    //       this.topicStackedChartMandate = data;
+    //     }
+    //   );
 
   }
 
@@ -198,8 +197,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getDataTypes(values: number[]) {
-    this.controlPie = false;
-    this.controlDonut = false;
     this.controlStackChart = false;
     this.controlBubbleChart = true;
 

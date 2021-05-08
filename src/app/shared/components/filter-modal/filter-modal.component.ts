@@ -49,14 +49,9 @@ export class FilterModalComponent implements OnInit {
 
   saveValues(): void {
 
-    console.log(this.form.controls['start'].value);
-    console.log(this.form.controls['end'].value);
-
-
     let startDate: string = this.form.controls['start'].value;
     let endDate = this.form.controls['end'].value;
 
-    // console.log(myDate);
     this.valuesChanged.emit([Date.parse(startDate), Date.parse(endDate)]);
   }
 }

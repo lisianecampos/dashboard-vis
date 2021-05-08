@@ -48,30 +48,58 @@ export class DashboardService {
     }
 
     this.options.params = params;
-    return this.httpClient.get<string[][]>('https://propositionsdash.herokuapp.com/propositions/partiesQuantity', this.options);
+    // https://propositionsdash.herokuapp.com
+    return this.httpClient.get<string[][]>('http://localhost:8080/propositions/partiesQuantity', this.options);
   }
 
-  public getTopicByYear(body: StackBarBody): Observable<StackedPieChartModel> {
+  public getTopicByYear(body: StackBarBody): Observable<StackedPieChartModel[]> {
 
-    return this.httpClient.put<StackedPieChartModel>('https://propositionsdash.herokuapp.com/propositions/stack-bar', body);
+    return this.httpClient.put<StackedPieChartModel[]>('http://localhost:8080/propositions/stack-bar', body);
   }
+
+  public getTopicByYear2(body: StackBarBody): Observable<StackedPieChartModel[]> {
+
+    console.log('temas list 2' + body.temas);
+
+    let temasString = body.temas[0];
+    for ( let i = 1; i < body.temas.length; i++) {
+      temasString = temasString + ',' + body.temas[i];
+    }
+
+    if (!temasString) {
+      temasString = '0';
+    }
+
+    console.log('temas list' + temasString);
+
+    let params = new HttpParams();
+
+    params = params.append('start', body.start);
+    params = params.append('end', body.end);
+    params = params.append('temas', temasString);
+
+    this.options.params = params;
+
+    return this.httpClient.get<StackedPieChartModel[]>('http://localhost:8080/propositions/stack-bar-2', this.options);
+  }
+
 
   public getTopicByMandate(body: StackBarBody): Observable<StackedPieChartModel> {
 
     const httpHeaders = new HttpHeaders();
     httpHeaders.append('content-type', 'application/json');
-    return this.httpClient.put<StackedPieChartModel>('https://propositionsdash.herokuapp.com/propositions/stack-bar-mandate', body);
+    return this.httpClient.put<StackedPieChartModel>('http://localhost:8080/propositions/stack-bar-mandate', body);
   }
 
   public getBubbleChartMandate(): Observable<BubbleChartInfo> {
 
-    return this.httpClient.get<BubbleChartInfo>('https://propositionsdash.herokuapp.com/propositions/bubble-chart-mandate');
+    return this.httpClient.get<BubbleChartInfo>('http://localhost:8080/propositions/bubble-chart-mandate');
 
   }
 
   public getBubbleChartMandateInverse(): Observable<BubbleChartInfo> {
 
-    return this.httpClient.get<BubbleChartInfo>('https://propositionsdash.herokuapp.com/propositions/bubble-chart-mandate-inverse');
+    return this.httpClient.get<BubbleChartInfo>('http://localhost:8080/propositions/bubble-chart-mandate-inverse');
 
   }
 }
