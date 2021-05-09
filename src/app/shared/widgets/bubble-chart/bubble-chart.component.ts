@@ -27,7 +27,7 @@ export class BubbleChartComponent implements OnInit {
         height: '60%',
       },
       title: {
-        text: 'Proposições de Acordo com Tema e Mandato de Apresentação'
+        text: 'Proposições de Acordo com Tema e Mandato de Apresentação: Packed Bubble Chart'
       },
       tooltip: {
         useHTML: true,

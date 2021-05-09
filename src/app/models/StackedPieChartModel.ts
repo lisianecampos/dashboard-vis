@@ -17,6 +17,6 @@ export class StackedPieChartModel {
     this._topicQuantity = value;
   }
   private _years: string[] = [];
-  private _topicQuantity!: TopicQuantity[];
+  private _topicQuantity: TopicQuantity[] = [];
 
 }

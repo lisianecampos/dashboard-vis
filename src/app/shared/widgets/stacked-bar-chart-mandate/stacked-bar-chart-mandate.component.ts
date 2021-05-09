@@ -26,7 +26,7 @@ export class StackedBarChartMandateComponent implements OnInit {
         type: 'bar'
       },
       title: {
-        text: 'Temas das Proposições por Mandato de Apresentação'
+        text: 'Proposições de Acordo com Tema e Mandato de Apresentação: Stacked Bar Chart'
       },
       xAxis: {
         categories: this.data.years
