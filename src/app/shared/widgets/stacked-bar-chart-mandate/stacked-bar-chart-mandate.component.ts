@@ -20,6 +20,8 @@ export class StackedBarChartMandateComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log(this.data);
+
     this.Highcharts = Highcharts;
     this.chartOptions = {
       chart: {

@@ -177,19 +177,18 @@
     <div class="chart-container">
 
       <app-stacked-bar-chart-mandate
-        *ngIf="(bubbleChartTopicByMandateModel.objects.length !== 0)"
+        *ngIf="(topicStackedChartModelMandate.years.length !== 0)"
         [data]="topicStackedChartModelMandate"></app-stacked-bar-chart-mandate>
-
 
       <div class="stack-bar-container bubble-spinner">
         <mat-spinner  *ngIf="!(bubbleChartTopicByMandateModel.objects.length !== 0)"></mat-spinner>
-
       </div>
-
 
       <app-bubble-chart
         *ngIf="(bubbleChartTopicByMandateModel.objects.length !== 0)"
         [data]="bubbleChartTopicByMandateModel"></app-bubble-chart>
+
+
 
     </div>
 

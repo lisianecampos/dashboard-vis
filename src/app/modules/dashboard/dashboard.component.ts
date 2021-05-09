@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   controlStackChart: boolean = false;
   controlBubbleChart: boolean = false;
 
-  dateValues: number[] = [631159200000, 1620442800000];
+  dateValues: number[] = [631159200000, 1620529200000];
   partiesQuantity: string[][] = [];
   partiesQuantityFixed: any[][] = [];
 
@@ -76,14 +76,19 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
   //  this.dateValues = [1546308000000, 1618110000000];
-    this.dateValues = [1546308000000, 1618110000000];
+    this.dateValues = [631159200000, 1620529200000];
     let stackBarBody = new StackBarBody(this.dateValues[0].toString(), this.dateValues[1].toString(), this.selectedTopicsList[0]);
 
     // this.getDataTypes(this.dateValues);
-    this.getFirstTab(this.dateValues);
+  //  this.getFirstTab(this.dateValues);
     //this.getSecondTab(this.dateValues);
+
     this.getThirdTab(this.dateValues);
-    this.getSecondTabTest(stackBarBody, 0);
+    this.getSecondTabStatic();
+
+    this.getFirstTabStatic();
+
+   // this.getSecondTabTest(stackBarBody, 0);
 
   }
 
@@ -166,22 +171,6 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  getStackedPieChartMandate() {
-
-    this.dashboardService.getStackedPieChartMandate()
-      .pipe(
-        finalize(() => {
-          this.topicStackedChartModelMandate = this.topicStackedChartMandate;
-
-        })
-      )
-      .subscribe(data => {
-          this.topicStackedChartMandate = data;
-        }
-      );
-
-  }
-
   createTemas(temas: any[]) {
     const arr = temas.map(tema => {
       return new FormControl(tema.selected || false);
@@ -214,6 +203,18 @@ export class DashboardComponent implements OnInit {
             total = total + this.propositions[i].quantity;
           }
 
+          this.dashboardService.getPartiesQuantity(startyear.toString(), endyear.toString())
+            .pipe(
+              finalize(() => {
+                this.partiesQuantityFixed = this.partiesQuantity.map(value => [value[0], parseInt(value[1])]);
+
+              })
+            )
+            .subscribe(data => {
+                this.partiesQuantity = data;
+              }
+            );
+
           this.totalPropositions = total.toLocaleString('pt-BR');
 
         })
@@ -223,17 +224,7 @@ export class DashboardComponent implements OnInit {
         }
       );
 
-    this.dashboardService.getPartiesQuantity(startyear.toString(), endyear.toString())
-      .pipe(
-        finalize(() => {
-          this.partiesQuantityFixed = this.partiesQuantity.map(value => [value[0], parseInt(value[1])]);
 
-        })
-      )
-      .subscribe(data => {
-          this.partiesQuantity = data;
-        }
-      );
   }
 
   // getSecondTab(values: number[]) {
@@ -289,6 +280,7 @@ export class DashboardComponent implements OnInit {
 
   getThirdTab(values: number[]) {
 
+    this.topicStackedChartModelMandate = new StackedPieChartModel();
     this.bubbleChartTopicByMandateModel = new BubbleChartInfo();
     this.bubbleChartTopicByMandateInverseModel = new BubbleChartInfo();
 
@@ -310,6 +302,8 @@ export class DashboardComponent implements OnInit {
         finalize(() => {
           this.topicStackedChartModelMandate = this.topicStackedChartMandate;
 
+          this.topicStackedChartMandate = new StackedPieChartModel();
+
         })
       )
       .subscribe(data => {
@@ -329,6 +323,203 @@ export class DashboardComponent implements OnInit {
     //     }
     //   );
   }
+
+  getSecondTabStatic() {
+
+    this.showStackedBarChart = false;
+    this.dashboardService.getStackedPieChartMandateStatic()
+      .pipe(
+        finalize(() => {
+          this.stackedChartModel = this.stackedChartModelDraft;
+
+          this.stackedChartModelDraft = new StackedPieChartModel();
+          this.showStackedBarChart = true;
+          let total = 88568;
+          this.totalPropositions2 = total.toLocaleString('pt-BR');
+        })
+      )
+      .subscribe(data => {
+          this.stackedChartModelDraft = data;
+        }
+      );
+
+  }
+
+  getFirstTabStatic() {
+    this.propositionsPie = [
+      {
+        "name": "Propostas de Emenda à Constituição",
+        "y": 3596,
+      },
+      {
+        "name": "Projetos de Lei Complementar",
+        "y": 3318,
+      },
+      {
+        "name": "Projetos de Lei Ordinária",
+        "y": 65146,
+      },
+      {
+        "name": "Projeto de Lei do Senado Federal",
+        "y": 20,
+      },
+      {
+        "name": "Projeto de Lei da Câmara dos Deputados",
+        "y": 6,
+      },
+      {
+        "name": "Projetos de Decreto Legislativo",
+        "y": 13302,
+      },
+      {
+        "name": "Projetos de Resolução",
+        "y": 2141,
+      },
+      {
+        "name": "Medidas Provisórias",
+        "y": 1039,
+      }
+    ];
+
+    this.partiesQuantityFixed = [
+      [
+        "PMN",
+        199
+      ],
+      [
+        "PODE",
+        788
+      ],
+      [
+        "PP",
+        3513
+      ],
+      [
+        "PPS",
+        1570
+      ],
+      [
+        "PR",
+        2240
+      ],
+      [
+        "PRB",
+        1308
+      ],
+      [
+        "PROS",
+        519
+      ],
+      [
+        "PRP",
+        65
+      ],
+      [
+        "PRTB",
+        64
+      ],
+      [
+        "PSB",
+        3581
+      ],
+      [
+        "PSC",
+        1145
+      ],
+      [
+        "PSD",
+        2494
+      ],
+      [
+        "PSDB",
+        8083
+      ],
+      [
+        "PSL",
+        1678
+      ],
+      [
+        "PSOL",
+        455
+      ],
+      [
+        "PT",
+        8290
+      ],
+      [
+        "PTB",
+        2783
+      ],
+      [
+        "PTC",
+        104
+      ],
+      [
+        "PV",
+        1324
+      ],
+      [
+        "REDE",
+        122
+      ],
+      [
+        "S.PART.",
+        98
+      ],
+      [
+        "AVANTE",
+        141
+      ],
+      [
+        "CIDADANIA",
+        205
+      ],
+      [
+        "DEM",
+        2851
+      ],
+      [
+        "MDB",
+        649
+      ],
+      [
+        "NOVO",
+        146
+      ],
+      [
+        "PATRI",
+        61
+      ],
+      [
+        "PATRIOTA",
+        98
+      ],
+      [
+        "PCdoB",
+        1127
+      ],
+      [
+        "PDT",
+        4800
+      ],
+      [
+        "PHS",
+        259
+      ],
+      [
+        "PL",
+        2325
+      ],
+      [
+        "Outros",
+        68
+      ]
+    ];
+
+    let total = 88568;
+    this.totalPropositions = total.toLocaleString('pt-BR');
+  }
+
 
   getDataTypes(values: number[]) {
     this.controlStackChart = false;

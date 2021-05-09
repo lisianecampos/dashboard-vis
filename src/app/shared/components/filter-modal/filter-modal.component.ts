@@ -41,7 +41,7 @@ export class FilterModalComponent implements OnInit {
   @Input() set showValues(value: number[]) {
 
     this.form = new FormGroup({
-      start: new FormControl(new Date(1546308000000)),
+      start: new FormControl(new Date(631159200000)),
       end: new FormControl(new Date())
     });
 

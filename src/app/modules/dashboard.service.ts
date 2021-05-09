@@ -110,6 +110,12 @@ export class DashboardService {
 
   }
 
+  public getStackedPieChartMandateStatic(): Observable<StackedPieChartModel> {
+
+    return this.httpClient.get<StackedPieChartModel>('https://propositionsdash.herokuapp.com/propositions/stack-mandate-static');
+
+  }
+
   public getBubbleChartMandate(): Observable<BubbleChartInfo> {
 
     return this.httpClient.get<BubbleChartInfo>('https://propositionsdash.herokuapp.com/propositions/bubble-chart-mandate');
