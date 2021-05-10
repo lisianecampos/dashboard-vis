@@ -53,10 +53,14 @@ export class TopicFilterComponent implements OnInit {
 
   onSelect(topic: MatOptionSelectionChange) {
 
-    if(topic.source.selected) {
+    if (topic.source.selected) {
       this.selectedTopics.push(topic.source.value);
 
+    } else {
+      this.selectedTopics = this.selectedTopics.filter(value => value !== topic.source.value)
     }
+
+
     this.topicsChanged.emit(this.selectedTopics);
   }
 
