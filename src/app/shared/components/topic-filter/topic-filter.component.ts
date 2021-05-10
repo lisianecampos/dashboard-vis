@@ -17,6 +17,9 @@ export class TopicFilterComponent implements OnInit {
   controlDisable: boolean = false;
   allTopicsLabel: string = 'Todos os temas';
 
+  topicSelectAll = 'Selecionar todos';
+  topicUnselectAll = 'Remover Seleção';
+
   topicsList: string[] = [
     'Administração Pública', 'Agricultura, Pecuária, Pesca e Extrativismo', 'Arte, Cultura e Religião', 'Cidades e Desenvolvimento Urbano', 'Ciências Exatas e da Terra',
     'Ciências Sociais e Humanas',
@@ -69,6 +72,9 @@ export class TopicFilterComponent implements OnInit {
     this.selectedTopics = [];
     if(topic.source.selected){
 
+      this.topicSelectAll = 'Limpar seleção';
+    //  topic.source.deselect();
+
       this.controlDisable = true;
 
       this.topics.setValue([
@@ -87,6 +93,7 @@ export class TopicFilterComponent implements OnInit {
       this.selectedTopics.concat(this.topicsList);
     }
     else {
+      this.topicSelectAll = 'Selecionar todos';
       this.controlDisable = false;
       this.topics.setValue([]);
     }

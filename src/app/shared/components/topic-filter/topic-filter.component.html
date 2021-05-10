@@ -7,7 +7,7 @@
         (+{{topics.value.length - 1}} {{topics.value?.length === 2 ? 'other' : 'others'}})
       </span>
     </mat-select-trigger>
-    <mat-option [value]="allTopicsLabel" (onSelectionChange)="allTopicsSelected($event)">Selecionar todos</mat-option>
+    <mat-option [value]="allTopicsLabel" (onSelectionChange)="allTopicsSelected($event)">{{topicSelectAll}}</mat-option>
     <mat-option *ngFor="let topping of topicsList" [value]="topping" (onSelectionChange)="onSelect($event)" [disabled]="controlDisable">{{topping}}</mat-option>
 
   </mat-select>
